@@ -45,7 +45,7 @@ function extractLinks(data) {
 }
 
 async function fetchChatbotAppearance(chatbotID) {
-  const apiUrl = `http://13.60.185.69/GetChatBotApprancebyChatbotID/${chatbotID}`;
+  const apiUrl = `https://backend.botsfornonporfits.com/GetChatBotApprancebyChatbotID/${chatbotID}`;
 
   try {
     const response = await fetch(apiUrl, {
@@ -511,7 +511,7 @@ async function setupChatbot(chatbotID) {
   };
 
   const generateResponse = chatElement => {
-    const API_URL = 'http://13.60.185.69/Chat';
+    const API_URL = 'https://backend.botsfornonporfits.com/Chat';
     const messageElement = chatElement.querySelector('p');
     const requestOptions = {
       method: 'POST',
@@ -642,7 +642,7 @@ async function setupChatbot(chatbotID) {
         };
 
         // Send lead data to API
-        fetch('http://13.60.185.69/AddLeadsDataToChatBot', {
+        fetch('https://backend.botsfornonporfits.com/AddLeadsDataToChatBot', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
