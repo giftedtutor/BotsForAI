@@ -1,7 +1,7 @@
 
 // Example usage:
-const message = "Here are some key points about Iran based on the provided context:\n\n**Military Capabilities**:\n  Iran has demonstrated significant military capabilities, including precision missile strikes that can target specific locations without causing significant casualties or ";
-const chatbotData = { ThemeColor: '#007bff' };
+// const message = "Here are some key points about Iran based on the provided context:\n\n**Military Capabilities**:\n  Iran has demonstrated significant military capabilities, including precision missile strikes that can target specific locations without causing significant casualties or ";
+// const chatbotData = { ThemeColor: '#007bff' };
 
 
 
@@ -45,7 +45,7 @@ function extractLinks(data) {
 }
 
 async function fetchChatbotAppearance(chatbotID) {
-  const apiUrl = `http://51.20.191.132/GetChatBotApprancebyChatbotID/${chatbotID}`;
+  const apiUrl = `http://13.60.185.69/GetChatBotApprancebyChatbotID/${chatbotID}`;
 
   try {
     const response = await fetch(apiUrl, {
@@ -511,7 +511,7 @@ async function setupChatbot(chatbotID) {
   };
 
   const generateResponse = chatElement => {
-    const API_URL = 'http://51.20.191.132/Chat';
+    const API_URL = 'http://13.60.185.69/Chat';
     const messageElement = chatElement.querySelector('p');
     const requestOptions = {
       method: 'POST',
@@ -642,7 +642,7 @@ async function setupChatbot(chatbotID) {
         };
 
         // Send lead data to API
-        fetch('http://51.20.191.132/AddLeadsDataToChatBot', {
+        fetch('http://13.60.185.69/AddLeadsDataToChatBot', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
