@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Charity Donation</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script> <!-- Replace YOUR_CLIENT_ID with your PayPal client ID -->
+</head>
+<body>
+    <h1>Donate to Our Charity</h1>
+    <input type="number" id="donationAmount" placeholder="Enter donation amount" step="0.01" min="0.01">
+    <div id="paypal-button-container"></div>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Get the donation amount from the input field
+                const donationAmount = document.getElementById('donationAmount').value;
+                
+                // Ensure the donation amount is valid
+                if (donationAmount <= 0) {
+                    alert('Please enter a valid donation amount.');
+                    return;
+                }
+
+                // Set up the transaction details
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: donationAmount // Use the entered donation amount
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Capture the transaction
+                return actions.order.capture().then(function(details) {
+                    alert('Thank you for your donation, ' + details.payer.name.given_name + '!');
+                });
+            },
+            onError: function(err) {
+                console.error(err);
+                alert('An error occurred with your donation. Please try again.');
+            }
+        }).render('#paypal-button-container'); // Render the PayPal button into the container
+    </script>
+</body>
+</html>
