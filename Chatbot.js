@@ -13,7 +13,7 @@ function copyMessageToClipboard(message) {
   });
 }
 
-function generateShareUrl(message) {
+/*function generateShareUrl(message) {
   const encodedMessage = encodeURIComponent(message);
   const shareUrl = `https://yourdomain.com/chat?message=${encodedMessage}`;
   navigator.clipboard.writeText(shareUrl).then(function () {
@@ -27,7 +27,7 @@ function generateTwitterPost(message) {
   const encodedMessage = encodeURIComponent(message);
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodedMessage}`;
   window.open(shareUrl, '_blank', 'width=600,height=400');
-}
+}*/
 
 // Function to extract links from JSON data
 function extractLinks(data) {
@@ -158,8 +158,9 @@ async function setupChatbot(chatbotID) {
       pointer-events: none;
       transform: scale(0.5);
       transform-origin: bottom right;
-      box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
-        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+      box-shadow: ${chatbotData.ThemeColor} 0px 2px 5px -1px, ${chatbotData.ThemeColor} 0px 1px 3px -1px;
+      
+      border: 1px solid ${chatbotData.ThemeColor};
       transition: all 0.1s ease;
       z-index: 1111;
     }
@@ -192,7 +193,7 @@ async function setupChatbot(chatbotID) {
 
     .kbucket-chatbot .kbucket-chatbox {
       overflow-y: auto;
-      height: 510px;
+      height: 500px;
       padding: 30px 20px 100px;
       font-size: 16px;
     }
@@ -221,24 +222,16 @@ async function setupChatbot(chatbotID) {
       color:white;
       font-size: 16px;
     }
-    .kbucket-chatbox .kbucket-incoming span {
-      width: 32px;
-      height: 32px;
-      color: #fff;
-      cursor: default;
-      text-align: center;
-      line-height: 32px;
-      align-self: flex-end;
-      background: ${chatbotData.ThemeColor};
-      border-radius: 4px;
-      margin: 0 10px 7px 0;
-      font-size: 16px;
-    }
+    .kbucket-chatbox .kbucket-incoming div {
+    color: black;
+    background: #F2F2F2;
+    font-size: 12px;
+}
     .kbucket-chatbox .kbucket-chat > div {
       position: relative;
       padding: 12px 16px;
       border-radius: 10px 10px 0 10px;
-      max-width: 75%;
+      max-width: 95%;
       font-size: 16px;
       background: ${chatbotData.ThemeColor};
       color: #000;
@@ -258,13 +251,7 @@ async function setupChatbot(chatbotID) {
       background: #F8D7DA;
       font-size: 16px;
     }
-    .kbucket-chatbox .kbucket-chat > div > div {
-      display: flex;
-      margin-top: 20px;
-      font-size: 16px;
-      gap: 5px;
-      flex-direction: column;
-    }
+    
     .kbucket-chatbox .kbucket-chat > div > div a {
       border-radius: 100px;
       color: #fff;
@@ -289,40 +276,47 @@ async function setupChatbot(chatbotID) {
       background: #F2F2F2;
       font-size: 16px;
     }
-    .kbucket-chatbot .kbucket-chat-input {
-      display: flex;
+    
+.kbucket-chatbot .kbucket-chat-input {
+    display: flex;
       gap: 5px;
       position: absolute;
       bottom: 0;
       width: 100%;
       background: #fff;
-      padding: 3px 20px;
+      padding: 5px 10px;
       border-top: 1px solid #ddd;
       
     }
+
+
+
     .kbucket-chat-input textarea {
-      height: 55px;
       width: 100%;
       border: none;
+      background-color: transparent;
       outline: none;
       resize: none;
-      max-height: 180px;
-      padding: 15px 15px 15px 0;
-      font-size: 16px;
-      margin: 0;
+      font-size: 14px;
+      color: #666;
     }
+
+    .kbucket-chat-input textarea::placeholder {
+      color: #211f1f;
+    }
+
     .kbucket-chat-input span {
-      align-self: flex-end;
-      color: #724AE8;
       cursor: pointer;
-      height: 55px;
       display: flex;
       align-items: center;
-      visibility: hidden;
-      font-size: 16px;
+      justify-content: center;
+      margin-left: 10px;
+      font-size: 24px;
+      color: #724AE8;
     }
-    .kbucket-chat-input textarea:valid ~ span {
-      visibility: visible;
+
+    .kbucket-chat-input span:hover {
+      color: #000;
     }
  .lead-form {
     position: absolute;
@@ -400,20 +394,24 @@ async function setupChatbot(chatbotID) {
     `;
   const chatbotHTML = `
         <div class="kbucket-chatbot">
-            <header >
-                <h2 style=" margin: 10px 0; font-size: 20px; color:white;">${chatbotData.DisplayName}</h2>
+           
+            <header style="display: flex; justify-content: space-between; align-items: center; background-color: white; padding: 10px; border-radius: 10px 10px 0 0;">
+                <h2 style=" margin: 10px 0; font-size: 20px; color:black;">${chatbotData.DisplayName}</h2>
+                <a href="#" style="color: green; text-decoration: underline; text-decoration-color: green; font-size: 14px; margin-right: 10px;">Chat Logs</a>
+
                 <span class="kbucket-close-btn material-symbols-outlined">close</span>
+                
             </header>
             <ul class="kbucket-chatbox">
                 <li class="kbucket-chat kbucket-incoming">
-                    <span class="material-symbols-outlined">robot</span>
+                  
                     <div>
                     <p>${chatbotData.InitialMessage}</p>
                     </div>
                 </li>
             </ul>
             <div class="kbucket-chat-input">
-                <textarea placeholder="Enter a message..." spellcheck="false" required autofocus></textarea>
+                <textarea placeholder="Message..." spellcheck="false" required autofocus></textarea>
                 <span id="kbucket-send-btn" style="color: ${chatbotData.ThemeColor}" class="material-symbols-rounded">send</span>
             </div>
         </div>
@@ -461,7 +459,7 @@ async function setupChatbot(chatbotID) {
   const createChatLi = (message, className) => {
     const chatLi = document.createElement('li');
     chatLi.classList.add('kbucket-chat', `kbucket-${className}`);
-    let chatContent = className === 'outgoing' ? `<div style="color:white"><p></p></div>` : `<span class="material-symbols-outlined">smart_toy</span><div><p></p></div>`;
+    let chatContent = className === 'outgoing' ? `<div style="color:white"><p></p></div>` : `<span class="material-symbols-outlined"></span><div><p></p></div>`;
     chatLi.innerHTML = chatContent;
     chatLi.querySelector('p').textContent = message;
     if (className === 'incoming') {
@@ -473,16 +471,16 @@ async function setupChatbot(chatbotID) {
       copyButton.dataset.message = message;
       copyButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-1.99.9-1.99 2L2 17h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>'; // Material "content_copy" icon
 
-      const twitterShareButton = document.createElement('button');
+     /* const twitterShareButton = document.createElement('button');
       twitterShareButton.dataset.action = 'twitter-share';
       twitterShareButton.dataset.message = message;
       twitterShareButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
       <path fill="currentColor" d="M23 5c-1.04.464-1.58 1.015-2 1.761.964-.375 1.564-1.157 1.884-2.002-.975.472-2.048.815-3.181 1.002C18.14 4.17 17.027 4 15.865 4c-2.762 0-5 2.238-5 5 0 .393.047.77.128 1.133-4.154-.212-7.843-2.19-10.294-5.198-.429.696-.676 1.504-.676 2.365 0 1.63.831 3.067 2.094 3.905-.77-.024-1.497-.237-2.13-.588v.059c0 2.28 1.625 4.182 3.771 4.614-.395.105-.809.161-1.23.161-.299 0-.59-.029-.876-.082.59 1.869 2.312 3.224 4.348 3.258-1.592 1.25-3.596 1.992-5.772 1.992-.375 0-.746-.021-1.115-.065 2.055 1.312 4.49 2.081 7.117 2.081 8.547 0 13.206-7.073 13.206-13.205 0-.201-.004-.402-.012-.603.905-.653 1.693-1.469 2.315-2.397z"/>
-    </svg>`;
+    </svg>`;*/
 
 
       buttonsDiv.appendChild(copyButton);
-      buttonsDiv.appendChild(twitterShareButton);
+      //buttonsDiv.appendChild(twitterShareButton);
 
       chatLi.querySelector('div').appendChild(buttonsDiv);
     }
