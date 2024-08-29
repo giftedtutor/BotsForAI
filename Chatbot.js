@@ -198,19 +198,23 @@ async function setupChatbot(chatbotID) {
       font-size: 16px;
     }
     .kbucket-chatbot :where(.kbucket-chatbox, textarea)::-webkit-scrollbar {
-      width: 6px;
-      font-size: 16px;
-    }
-    .kbucket-chatbot :where(.kbucket-chatbox, textarea)::-webkit-scrollbar-track {
-      background: #fff;
-      border-radius: 25px;
-      font-size: 16px;
-    }
-    .kbucket-chatbot :where(.kbucket-chatbox, textarea)::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 25px;
-      font-size: 16px;
-    }
+  width: 6px; /* Set the width of the scrollbar */
+}
+
+.kbucket-chatbot :where(.kbucket-chatbox, textarea)::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Lighter grey for the track */
+  border-radius: 25px;
+}
+
+.kbucket-chatbot :where(.kbucket-chatbox, textarea)::-webkit-scrollbar-thumb {
+  background: #888; /* Darker grey for the thumb */
+  border-radius: 25px;
+}
+
+.kbucket-chatbot :where(.kbucket-chatbox, textarea)::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Slightly darker grey when hovering over the thumb */
+}
+
     .kbucket-chatbox .kbucket-chat {
       display: flex;
       list-style: none;
@@ -231,7 +235,7 @@ async function setupChatbot(chatbotID) {
       position: relative;
       padding: 12px 16px;
       border-radius: 10px 10px 0 10px;
-      max-width: 95%;
+      max-width: 100%;
       font-size: 16px;
       background: ${chatbotData.ThemeColor};
       color: #000;
@@ -278,46 +282,47 @@ async function setupChatbot(chatbotID) {
     }
     
 .kbucket-chatbot .kbucket-chat-input {
-    display: flex;
-      gap: 5px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: #fff;
-      padding: 5px 10px;
-      border-top: 1px solid #ddd;
-      
-    }
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  padding: 5px 10px;
+  border-top: 1px solid #ddd;
+}
 
+.kbucket-chat-input textarea {
+  width: 100%;
+  height: 40px; /* Set the initial height */
+  max-height: 100px; /* Maximum height before scrollbar appears */
+  border: none;
+  background-color: transparent;
+  outline: none;
+  resize: none; /* Disable manual resizing */
+  font-size: 14px;
+  color: #666;
+  overflow-y: auto; /* Enable scrollbar when content exceeds max-height */
+}
 
+.kbucket-chat-input textarea::placeholder {
+  color: #211f1f;
+}
 
-    .kbucket-chat-input textarea {
-      width: 100%;
-      border: none;
-      background-color: transparent;
-      outline: none;
-      resize: none;
-      font-size: 14px;
-      color: #666;
-    }
+.kbucket-chat-input span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 24px;
+  color: #724AE8;
+}
 
-    .kbucket-chat-input textarea::placeholder {
-      color: #211f1f;
-    }
+.kbucket-chat-input span:hover {
+  color: #000;
+}
 
-    .kbucket-chat-input span {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 10px;
-      font-size: 24px;
-      color: #724AE8;
-    }
-
-    .kbucket-chat-input span:hover {
-      color: #000;
-    }
  .lead-form {
     position: absolute;
     top: 50%;
@@ -397,7 +402,7 @@ async function setupChatbot(chatbotID) {
            
             <header style="display: flex; justify-content: space-between; align-items: center; background-color: white; padding: 10px; border-radius: 10px 10px 0 0;">
                 <h2 style=" margin: 10px 0; font-size: 20px; color:black;">${chatbotData.DisplayName}</h2>
-                <a href="#" style="color: green; text-decoration: underline; text-decoration-color: green; font-size: 14px; margin-right: 10px;">Chat Logs</a>
+                <!--<a href="#" style="color: green; text-decoration: underline; text-decoration-color: green; font-size: 14px; margin-right: 10px;">Chat Logs</a>-->
 
                 <span class="kbucket-close-btn material-symbols-outlined">close</span>
                 
