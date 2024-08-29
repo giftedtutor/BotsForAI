@@ -229,11 +229,11 @@ async function setupChatbot(chatbotID) {
     .kbucket-chatbox .kbucket-incoming div {
     color: black;
     background: #F2F2F2;
-    font-size: 12px;
+    font-size: 16px;
 }
     .kbucket-chatbox .kbucket-chat > div {
       position: relative;
-      padding: 12px 16px;
+      padding: 4px 16px;
       border-radius: 10px 10px 0 10px;
       max-width: 100%;
       font-size: 16px;
@@ -262,7 +262,7 @@ async function setupChatbot(chatbotID) {
       text-decoration: none;
       font-size: 16px;
       background:${chatbotData.ThemeColor};
-      padding: 7px 20px;
+      padding: 4px 16px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -276,6 +276,7 @@ async function setupChatbot(chatbotID) {
       font-size: 16px;
     }
     .kbucket-chatbox .kbucket-incoming div {
+    
       color: #white;
       background: #F2F2F2;
       font-size: 16px;
