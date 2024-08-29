@@ -293,6 +293,7 @@ async function setupChatbot(chatbotID) {
 }
 
 .kbucket-chat-input textarea {
+padding-top:5px;
   width: 100%;
   height: 40px; /* Set the initial height */
   max-height: 100px; /* Maximum height before scrollbar appears */
@@ -397,13 +398,14 @@ async function setupChatbot(chatbotID) {
             <span class="material-symbols-outlined">close</span>
         </button>
     `;
+  /* <a href="#" style="color: green; text-decoration: underline; text-decoration-color: green; font-size: 14px; margin-right: 10px;">Chat Logs</a> */
+
   const chatbotHTML = `
         <div class="kbucket-chatbot">
            
             <header style="display: flex; justify-content: space-between; align-items: center; background-color: white; padding: 10px; border-radius: 10px 10px 0 0;">
-                <h2 style=" margin: 10px 0; font-size: 20px; color:black;">${chatbotData.DisplayName}</h2>
-                <a href="#" style="color: green; text-decoration: underline; text-decoration-color: green; font-size: 14px; margin-right: 10px;">Chat Logs</a>
-
+                <h2 style=" margin: 10px 5px; font-size: 20px; color:black; font-weight: 300">${chatbotData.DisplayName}</h2>
+             
                 <span class="kbucket-close-btn material-symbols-outlined">close</span>
                 
             </header>
