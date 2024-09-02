@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate</title>
+</head>
+<body>
+    <script src="PayDonation.js"></script>
+    <script>
+        // Function to extract the clientId from the URL
+        function getClientIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('clientId');
+        }
+
+        // Extract the clientId from the URL and initialize the PayPal donation form
+        const clientId = getClientIdFromUrl();
+        if (clientId) {
+            initializePayPalDonationForm(clientId);
+        } else {
+            alert('Client ID is missing from the URL');
+        }
+    </script>
+</body>
+</html>
