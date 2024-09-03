@@ -93,6 +93,37 @@ async function setupChatbot(chatbotID) {
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
+      .styled-button {
+    background: linear-gradient(135deg, #6495ED 0%, ${chatbotData.ThemeColor} 100%);
+    color: #fff;
+    margin-top:5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px; /* Reduced radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.styled-button:hover {
+    background: linear-gradient(135deg, #feb47b 0%, #${chatbotData.ThemeColor} 100%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.styled-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.styled-button:focus {
+    outline: none;
+}
+
     .kbucket-share-buttons {
         display: flex;
         gap: 10px;
